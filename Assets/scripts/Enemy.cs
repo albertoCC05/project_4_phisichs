@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed;
     private Rigidbody enemyRigidbody;
     private GameObject playerReference;
+    private float lowerLimit = -3f;
+    private SpwnManager Spawnmanager;
 
     private void Awake()
     {
@@ -15,7 +17,8 @@ public class Enemy : MonoBehaviour
     }
     private void Start()
     {
-        playerReference = GameObject.Find("Player");   
+        playerReference = GameObject.Find("Player");
+        Spawnmanager = FindObjectOfType<SpwnManager>();
     }
     private void Update()
     {
@@ -30,6 +33,15 @@ public class Enemy : MonoBehaviour
         //origen = posicion enemigo 
 
         enemyRigidbody.AddForce (direccion * speed );
+
+        //destroy enemy when dies
+
+        if(transform.position.y < lowerLimit)
+        {
+            Spawnmanager.EnemmyDestry();
+            Destroy(gameObject);
+            
+        }
 
     }
 }

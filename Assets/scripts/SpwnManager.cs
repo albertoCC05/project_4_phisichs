@@ -11,6 +11,8 @@ public class SpwnManager : MonoBehaviour
     private float spawnPosZ = 9f;
     private float timeDelay = 7;
     private float startDelay = 2;
+    private int enemiesInScene;
+    private int enemiesPerWave = 1;
 
 
     private Vector3 RandomSpawnPos()
@@ -22,20 +24,48 @@ public class SpwnManager : MonoBehaviour
         
     }
 
+    private void SpawnEnemiesWave(int enemiestoSpawn)
+    {
+        for (int i = 0; i < enemiestoSpawn; i++)
+        {
+            SpawnEnemy();
+        }
+    }
+
     private void SpawnEnemy()
     {
         Instantiate(enemy, RandomSpawnPos(), Quaternion.identity);
+        enemiesInScene++;
     }
+
+    public void EnemmyDestry()
+    {
+        enemiesInScene--;
+    }
+
      private void SpawnPowerUp()
     {
         Instantiate(powerUp, RandomSpawnPos(), Quaternion.identity);
     }
-
+    //----------------------------------------------
     private void Start()
     {
-        InvokeRepeating("SpawnEnemy", startDelay, timeDelay);
+        SpawnEnemiesWave(enemiesPerWave);
         InvokeRepeating("SpawnPowerUp", startDelay, timeDelay);
     }
+    private void Update()
+    {
+        if (enemiesInScene <= 0)
+        {
+            enemiesPerWave++;
+            SpawnEnemiesWave(enemiesPerWave);
+
+        }
+    }
+
+
+
+
 
 
 

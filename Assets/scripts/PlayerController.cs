@@ -11,8 +11,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float playerSpeed;
     private float forwardInput;
     [SerializeField] private GameObject focalPoint;
-    private bool hasPowerUp = false;
+    [SerializeField] private bool hasPowerUp = false;
     [SerializeField] float PowerUpForce = 10f;
+    [SerializeField] private GameObject[] powerupIndicators;
+    private int lives = 1;
+    private float lowerlimit = -3f;
+    private bool isGameOver = false;
+    private Vector3 initialPosition = Vector3.zero;
 
     // funciones
 
@@ -20,16 +25,43 @@ public class PlayerController : MonoBehaviour
     {
         //espera 6 segundos
 
-        yield return new WaitForSeconds(6);
+
+
+        for (int i = 0; i < powerupIndicators.Length; i++)
+        {
+            powerupIndicators[i].SetActive(true);
+            yield return new WaitForSeconds(2);
+            powerupIndicators[i].SetActive(false);
+        }
+
         hasPowerUp = false;
     }
 
+    private void HideAllPowerupIndicators()
+    {
+        foreach (GameObject indicator in powerupIndicators)
+        {
+            indicator.SetActive(false);
+        }
+    }
+
+    private void Movment()
+    {
+        forwardInput = Input.GetAxis("Vertical");
+        playerRigidboddy.AddForce(focalPoint.transform.forward * playerSpeed * forwardInput);
+    }
+
+
     //-----------------------------------------------
+    private void Start()
+    {
+        HideAllPowerupIndicators();
+    }
 
     private void Awake()
     {
         playerRigidboddy = GetComponent<Rigidbody>();
-
+        isGameOver = false;
     }
 
     
@@ -37,17 +69,37 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //movment
-        
-        forwardInput = Input.GetAxis("Vertical");
-        playerRigidboddy.AddForce(focalPoint.transform.forward * playerSpeed * forwardInput);
 
-        //frenar en seco --- no tiene sentido en este projecto-----mejor configurar drag del rigidbody.
-        //valor absoluto
-      
-        /* if (Mathf.Abs(forwardInput) < 0.01f)
+        if (isGameOver == true)
         {
-            playerRigidboddy.velocity = Vector3.zero;
-        } */
+            return;
+        }
+       
+        Movment();
+       
+        if (transform.position.y < lowerlimit)
+        {
+            lives--;
+            if (lives < 0)
+            {
+                isGameOver = true;
+            }
+            else
+            {
+                transform.position = initialPosition;
+                playerRigidboddy.velocity = Vector3.zero;
+            }
+            
+        }
+        
+       
+
+        
+        
+
+
+
+       
     }
 
 
