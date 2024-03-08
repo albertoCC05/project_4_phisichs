@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private GameObject playerReference;
     private float lowerLimit = -3f;
     private SpwnManager Spawnmanager;
+    private PlayerController gameOverScript;
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
     }
     private void Start()
     {
+        gameOverScript = FindObjectOfType<PlayerController>();
         playerReference = GameObject.Find("Player");
         Spawnmanager = FindObjectOfType<SpwnManager>();
     }
@@ -32,7 +34,11 @@ public class Enemy : MonoBehaviour
         // destino = posicion player
         //origen = posicion enemigo 
 
-        enemyRigidbody.AddForce (direccion * speed );
+        if (gameOverScript.isGameOver == false)
+        {
+            enemyRigidbody.AddForce(direccion * speed);
+        }
+        
 
         //destroy enemy when dies
 

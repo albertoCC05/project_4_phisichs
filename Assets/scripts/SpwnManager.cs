@@ -9,10 +9,9 @@ public class SpwnManager : MonoBehaviour
     [SerializeField] private GameObject powerUp;
     private float spawnPosX = 6f;
     private float spawnPosZ = 9f;
-    private float timeDelay = 7;
-    private float startDelay = 2;
     private int enemiesInScene;
     private int enemiesPerWave = 1;
+    private PlayerController gameOverScript;
 
 
     private Vector3 RandomSpawnPos()
@@ -29,7 +28,9 @@ public class SpwnManager : MonoBehaviour
         for (int i = 0; i < enemiestoSpawn; i++)
         {
             SpawnEnemy();
+            
         }
+        SpawnPowerUp();
     }
 
     private void SpawnEnemy()
@@ -45,13 +46,21 @@ public class SpwnManager : MonoBehaviour
 
      private void SpawnPowerUp()
     {
-        Instantiate(powerUp, RandomSpawnPos(), Quaternion.identity);
+        if(gameOverScript.isGameOver == false && gameOverScript.hasPowerUp == false)
+        {
+            Instantiate(powerUp, RandomSpawnPos(), Quaternion.identity);
+        }
+
+        
     }
     //----------------------------------------------
     private void Start()
     {
+       
+       
+        //InvokeRepeating("SpawnPowerUp", startDelay, timeDelay);
+        gameOverScript = FindObjectOfType<PlayerController>();
         SpawnEnemiesWave(enemiesPerWave);
-        InvokeRepeating("SpawnPowerUp", startDelay, timeDelay);
     }
     private void Update()
     {

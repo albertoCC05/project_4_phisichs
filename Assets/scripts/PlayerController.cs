@@ -11,13 +11,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float playerSpeed;
     private float forwardInput;
     [SerializeField] private GameObject focalPoint;
-    [SerializeField] private bool hasPowerUp = false;
+    [SerializeField] public bool hasPowerUp = false;
     [SerializeField] float PowerUpForce = 10f;
     [SerializeField] private GameObject[] powerupIndicators;
-    private int lives = 1;
+    private int lives = 3;
     private float lowerlimit = -3f;
-    private bool isGameOver = false;
+    public bool isGameOver = false;
     private Vector3 initialPosition = Vector3.zero;
+
 
     // funciones
 
@@ -50,6 +51,8 @@ public class PlayerController : MonoBehaviour
         forwardInput = Input.GetAxis("Vertical");
         playerRigidboddy.AddForce(focalPoint.transform.forward * playerSpeed * forwardInput);
     }
+
+  
 
 
     //-----------------------------------------------
