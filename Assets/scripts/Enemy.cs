@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -11,6 +10,7 @@ public class Enemy : MonoBehaviour
     private float lowerLimit = -3f;
     private SpwnManager Spawnmanager;
     private PlayerController gameOverScript;
+    private UImanager UimanagerScript;
 
     private void Awake()
     {
@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
         gameOverScript = FindObjectOfType<PlayerController>();
         playerReference = GameObject.Find("Player");
         Spawnmanager = FindObjectOfType<SpwnManager>();
+        UimanagerScript = FindObjectOfType<UImanager>();
     }
     private void Update()
     {
@@ -46,6 +47,7 @@ public class Enemy : MonoBehaviour
         {
             Spawnmanager.EnemmyDestry();
             Destroy(gameObject);
+           
             
         }
 

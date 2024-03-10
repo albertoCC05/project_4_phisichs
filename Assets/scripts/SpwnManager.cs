@@ -9,9 +9,10 @@ public class SpwnManager : MonoBehaviour
     [SerializeField] private GameObject powerUp;
     private float spawnPosX = 6f;
     private float spawnPosZ = 9f;
-    private int enemiesInScene;
-    private int enemiesPerWave = 1;
+    public int enemiesInScene;
+    public int enemiesPerWave = 1;
     private PlayerController gameOverScript;
+    private UImanager UimanagerScript;
 
 
     private Vector3 RandomSpawnPos()
@@ -27,10 +28,14 @@ public class SpwnManager : MonoBehaviour
     {
         for (int i = 0; i < enemiestoSpawn; i++)
         {
+            
             SpawnEnemy();
             
+
+
         }
         SpawnPowerUp();
+        UimanagerScript.UpdateEnemiesText(enemiesInScene, enemiesPerWave);
     }
 
     private void SpawnEnemy()
@@ -61,6 +66,7 @@ public class SpwnManager : MonoBehaviour
         //InvokeRepeating("SpawnPowerUp", startDelay, timeDelay);
         gameOverScript = FindObjectOfType<PlayerController>();
         SpawnEnemiesWave(enemiesPerWave);
+        UimanagerScript = FindObjectOfType<UImanager>();
     }
     private void Update()
     {
