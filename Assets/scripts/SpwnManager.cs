@@ -30,12 +30,14 @@ public class SpwnManager : MonoBehaviour
         {
             
             SpawnEnemy();
-            
+           
 
 
         }
+        UimanagerScript.UpdateEnemiesText(enemiestoSpawn, enemiestoSpawn);
         SpawnPowerUp();
-        UimanagerScript.UpdateEnemiesText(enemiesInScene, enemiesPerWave);
+        Debug.Log(enemiestoSpawn);
+       
     }
 
     private void SpawnEnemy()
@@ -51,7 +53,7 @@ public class SpwnManager : MonoBehaviour
 
      private void SpawnPowerUp()
     {
-        if(gameOverScript.isGameOver == false && gameOverScript.hasPowerUp == false)
+        if(gameOverScript.isGameOver == false && gameOverScript.hasPowerUp == false )
         {
             Instantiate(powerUp, RandomSpawnPos(), Quaternion.identity);
         }
@@ -79,7 +81,14 @@ public class SpwnManager : MonoBehaviour
     }
 
 
+    public void actuazilarTexto()
+    {
+        Debug.Log(enemiesInScene);
+        Debug.Log(enemiesPerWave);
 
+        UimanagerScript.UpdateEnemiesText(enemiesInScene, enemiesPerWave);
+
+    }
 
 
 

@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
         if(transform.position.y < lowerLimit)
         {
             Spawnmanager.EnemmyDestry();
+            Spawnmanager.actuazilarTexto();
             Destroy(gameObject);
            
             

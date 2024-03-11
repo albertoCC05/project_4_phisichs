@@ -332,6 +332,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 6884890501035051694, guid: 28b64a65b127de1438b75f003b370c4f, type: 3}
   powerUp: {fileID: 1518749945843069796, guid: 0d94b9245144ded4ea1168ae713b0640, type: 3}
+  enemiesInScene: 0
+  enemiesPerWave: 1
 --- !u!4 &96348680
 Transform:
   m_ObjectHideFlags: 0
@@ -664,11 +666,11 @@ RectTransform:
   - {fileID: 130215017}
   m_Father: {fileID: 65748489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -446.2, y: 225.59}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 44.98, y: -31.170013}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &548604487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1930,11 +1932,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 65748489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 288, y: 213.6}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -34.66, y: -44.910004}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1571398651
 MonoBehaviour:
   m_ObjectHideFlags: 0

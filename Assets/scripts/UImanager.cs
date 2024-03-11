@@ -29,9 +29,9 @@ public class UImanager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI enemiesLefttext;
 
     // functions
-    public void UpdateEnemiesText(int enemiesInScene, int enemiesPerWave)
+    public void UpdateEnemiesText(int uno, int dos)
     {
-        enemiesLefttext.text = $"enemies: {enemiesInScene} / {enemiesPerWave}";
+        enemiesLefttext.text = $"enemies: {uno} / {dos}";
     }
     public void PauseGame()
     {
