@@ -10,9 +10,9 @@ public class UImanager : MonoBehaviour
 {
 
     // variables
-    [SerializeField] private GameObject gameOverPanel;
+  
     [SerializeField] private GameObject optionsPanel;
-    [SerializeField] private GameObject pausePanel;
+    
 
     [SerializeField] private Slider musicSlider;
     [SerializeField] private AudioSource cameraAudiosource;
@@ -26,42 +26,15 @@ public class UImanager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI musicSliderText;
     [SerializeField] private TextMeshProUGUI optionsTitleText;
 
-    [SerializeField] private TextMeshProUGUI enemiesLefttext;
+   
 
     // functions
-    public void UpdateEnemiesText(int uno, int dos)
-    {
-        enemiesLefttext.text = $"enemies: {uno} / {dos}";
-    }
-    public void PauseGame()
-    {
-        ShowPausePanel();
-        Time.timeScale = 0;
-    }
-    public void ContinueGame()
-    {
-        HidePausePanel();
-        Time.timeScale = 1;
-    }
+   
+    
+   
     public void ReturnToMenu()
     {
         SceneManager.LoadScene(0);
-    }
-    public void HideGameOverPanel()
-    {
-        gameOverPanel.SetActive(false);
-    }
-    public void ShowGameOverPanel()
-    {
-        gameOverPanel.SetActive(true);
-    }
-    public void HidePausePanel()
-    {
-        pausePanel.SetActive(false);
-    }
-    public void ShowPausePanel()
-    {
-        pausePanel.SetActive(true);
     }
     public void HideOptionsPanel()
     {
@@ -122,8 +95,6 @@ public class UImanager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        HideGameOverPanel();
-        HidePausePanel();
         HideOptionsPanel();
         Screen.SetResolution( 1920,  1080 , false);
     }

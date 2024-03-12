@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public bool isGameOver = false;
     private Vector3 initialPosition = Vector3.zero;
 
+    private UiGameScene uiGameScript;
+
 
     // funciones
 
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
     //-----------------------------------------------
     private void Start()
     {
+        uiGameScript = FindObjectOfType<UiGameScene>();
         HideAllPowerupIndicators();
     }
 
@@ -78,7 +81,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
        
-        Movment();
+       
        
         if (transform.position.y < lowerlimit)
         {
@@ -86,6 +89,8 @@ public class PlayerController : MonoBehaviour
             if (lives < 0)
             {
                 isGameOver = true;
+                uiGameScript.ShowGameOverPanel();
+
             }
             else
             {
@@ -104,7 +109,10 @@ public class PlayerController : MonoBehaviour
 
        
     }
-
+    private void FixedUpdate()
+    {
+        Movment();
+    }
 
     //power up
 

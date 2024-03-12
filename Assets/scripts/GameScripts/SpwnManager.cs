@@ -12,7 +12,7 @@ public class SpwnManager : MonoBehaviour
     public int enemiesInScene;
     public int enemiesPerWave = 1;
     private PlayerController gameOverScript;
-    private UImanager UimanagerScript;
+    private UiGameScene UimanagerGameScript;
 
 
     private Vector3 RandomSpawnPos()
@@ -34,7 +34,7 @@ public class SpwnManager : MonoBehaviour
 
 
         }
-        UimanagerScript.UpdateEnemiesText(enemiestoSpawn, enemiestoSpawn);
+        UimanagerGameScript.UpdateEnemiesText(enemiestoSpawn, enemiestoSpawn);
         SpawnPowerUp();
         Debug.Log(enemiestoSpawn);
        
@@ -49,6 +49,7 @@ public class SpwnManager : MonoBehaviour
     public void EnemmyDestry()
     {
         enemiesInScene--;
+        UimanagerGameScript.UpdateEnemiesText(enemiesInScene, enemiesPerWave);
     }
 
      private void SpawnPowerUp()
@@ -67,8 +68,9 @@ public class SpwnManager : MonoBehaviour
        
         //InvokeRepeating("SpawnPowerUp", startDelay, timeDelay);
         gameOverScript = FindObjectOfType<PlayerController>();
+        UimanagerGameScript = FindObjectOfType<UiGameScene>();
         SpawnEnemiesWave(enemiesPerWave);
-        UimanagerScript = FindObjectOfType<UImanager>();
+       
     }
     private void Update()
     {
@@ -86,7 +88,7 @@ public class SpwnManager : MonoBehaviour
         Debug.Log(enemiesInScene);
         Debug.Log(enemiesPerWave);
 
-        UimanagerScript.UpdateEnemiesText(enemiesInScene, enemiesPerWave);
+        UimanagerGameScript.UpdateEnemiesText(enemiesInScene, enemiesPerWave);
 
     }
 
