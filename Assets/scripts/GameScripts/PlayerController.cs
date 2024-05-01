@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public bool isGameOver = false;
     private Vector3 initialPosition = Vector3.zero;
 
+    public int points = 0;
+
     private UiGameScene uiGameScript;
 
 
@@ -62,6 +64,7 @@ public class PlayerController : MonoBehaviour
     {
         uiGameScript = FindObjectOfType<UiGameScene>();
         HideAllPowerupIndicators();
+        points = 0; 
     }
 
     private void Awake()
@@ -137,6 +140,12 @@ public class PlayerController : MonoBehaviour
             other.rigidbody.AddForce(direction * PowerUpForce, ForceMode.Impulse);
         }
     }
+
+    public void WinPoint()
+    {
+        points++;
+    }
+    
 
 
 }

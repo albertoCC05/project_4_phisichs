@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     private PlayerController gameOverScript;
     private UImanager UimanagerScript;
 
+    private DataPersistance dataPersistance;
+
     private void Awake()
     {
         enemyRigidbody = GetComponent<Rigidbody>();
@@ -19,6 +21,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         gameOverScript = FindObjectOfType<PlayerController>();
+        dataPersistance = FindObjectOfType<DataPersistance>();
         playerReference = GameObject.Find("Player");
         Spawnmanager = FindObjectOfType<SpwnManager>();
         UimanagerScript = FindObjectOfType<UImanager>();
@@ -47,10 +50,14 @@ public class Enemy : MonoBehaviour
         {
             Spawnmanager.EnemmyDestry();
             Spawnmanager.actuazilarTexto();
+            gameOverScript.WinPoint();
+            dataPersistance.Save();
             Destroy(gameObject);
            
             
         }
 
     }
+
+
 }

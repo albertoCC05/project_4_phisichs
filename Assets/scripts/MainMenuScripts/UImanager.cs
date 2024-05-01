@@ -26,12 +26,18 @@ public class UImanager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI musicSliderText;
     [SerializeField] private TextMeshProUGUI optionsTitleText;
 
-   
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject pointsPanel;
+
+    private DataPersistance dataPersistance;
+
+
+
 
     // functions
-   
-    
-   
+
+
+
     public void ReturnToMenu()
     {
         SceneManager.LoadScene(0);
@@ -90,12 +96,31 @@ public class UImanager : MonoBehaviour
         }
 
     }
+   public void HidePointsPanel()
+    {
+        pointsPanel.SetActive(false);
+    }
+    public void ShowPointsPanel()
+    {
+        pointsPanel.SetActive(true);
+    }
+    public void UpdateScoreText()
+    {
+        dataPersistance.Load();
+        Debug.Log(dataPersistance.puntuation);
+        scoreText.text = ($"Your last score was: {dataPersistance.puntuation}");
+    }
+
+
     // events
 
     private void Start()
     {
+        dataPersistance = FindObjectOfType<DataPersistance>();
+
         Time.timeScale = 1;
         HideOptionsPanel();
+        HidePointsPanel();
         Screen.SetResolution( 1920,  1080 , false);
     }
 
